@@ -1,0 +1,36 @@
+form#register {
+  border: 3px solid #131212;
+  border-radius: 1.2rem;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to right, #8f9292, #dbdbe0);
+}
+button.ant-btn.ant-btn-primary {
+  background-color: #171818;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+}
+a {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+label.ant-form-item-required {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.grow:hover {
+  transform: scale(1.1);
+}
+.nav-btn {
+  margin-left: 0.7em !important;
+}
+button.ant-btn {
+  background-color: #171818;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+}
+button.ant-btn:hover {
+  background-color: #171818;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+}

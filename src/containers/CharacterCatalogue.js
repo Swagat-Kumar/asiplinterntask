@@ -22,7 +22,7 @@ const CharacterCatalogue = () => {
     const [isCharComplete,setIsCharComplete]=React.useState(false);
     const displayCharacters=useSelector(state=>state.resultCharacters);
     const [searchParam,setSearchParam]=React.useState('name');
-    const [searchPlaceHolder,setSearchPlaceHolder]=React.useState('Search by Name of the Character');
+    const [searchPlaceHolder,setSearchPlaceHolder]=React.useState('Search by Name or Nickname of the Character');
     
     React.useEffect(() => {
         fetch("https://www.breakingbadapi.com/api/characters")
@@ -49,7 +49,7 @@ const CharacterCatalogue = () => {
         if (value==='episode'){
             setSearchPlaceHolder('Search by Episode Name or Number');
         }else{
-            setSearchPlaceHolder('Search by Name or NickName of the Character');
+            setSearchPlaceHolder('Search by Name or Nickname of the Character');
         }
     }
     return (
@@ -68,7 +68,7 @@ const CharacterCatalogue = () => {
                     </div>
 
                     <div className="row mt-2">
-                        {error?<div className="text-muted mt-5">Error : {error.message}</div>:isCharComplete?displayCharacters.map((item)=>(<Character imgurl={item.img} key={item.char_id} name={item.name} nickname={item.nickname} description={item.occupation} status={item.status}/>)):<div className="text-white mt-5 pt-5 h2">Loading...</div>}
+                        {error?<div className="text-muted mt-5 pt-5 h2">Error : {error.message}</div>:isCharComplete?displayCharacters.map((item)=>(<Character imgurl={item.img} key={item.char_id} name={item.name} nickname={item.nickname} description={item.occupation} status={item.status}/>)):<div className="text-white mt-5 pt-5 h2">Loading...</div>}
                     </div>
                     
                 </div>
@@ -76,7 +76,7 @@ const CharacterCatalogue = () => {
             
         </div>
         <BackTop>
-        <div style={{height:'40px',width:'5rem',lineHeight:'40px',backgroundColor:'black',textAlign:'center',color:'white',fontSize:'10.5px',borderRadius:'13px'}}>back to top👆</div>
+        <div style={{height:'40px',width:'5rem',lineHeight:'40px',backgroundColor:'#141518',textAlign:'center',color:'white',fontSize:'11px',borderRadius:'12px',border:'1px solid white'}}>back to top👆</div>
         </BackTop>)
         </>
     )

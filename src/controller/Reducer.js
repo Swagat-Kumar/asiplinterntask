@@ -1,6 +1,7 @@
-import {SEARCH_BY_NAME,SEARCH_BY_EPISODE,RESET_SEARCH,SET_EPISODES, SET_CHARACTERS} from './Constants'
+import {SEARCH_BY_NAME,SEARCH_BY_EPISODE,RESET_SEARCH,SET_EPISODES, SET_CHARACTERS,SIGN_UP,SET_PASSWORD,LOGIN} from './Constants'
 const initialAppState={
     search:'',
+    appState:'login',
     characters:[],
     episodes:[],
     resultCharacters:[],
@@ -11,6 +12,12 @@ export const rootReducer=(state=initialAppState,action)=>{
             return {...state,search:'',resultCharacters:state.characters}
         case SET_EPISODES:
             return {...state,episodes:action.payload.episodes}
+        case SET_PASSWORD:
+            return {...state,appState:'forgot'}
+        case LOGIN:
+            return {...state,appState:'login'}
+        case SIGN_UP:
+            return {...state,appState:'signup'}
         case SET_CHARACTERS:
             return {...state,characters:action.payload.characters,resultCharacters:action.payload.characters}
         case SEARCH_BY_NAME:
@@ -28,7 +35,7 @@ export const rootReducer=(state=initialAppState,action)=>{
                     }
                 }
             }
-            console.log(unique);
+            // console.log(unique);
             var result=[];
             for (var k=0;k<state.characters.length;k++){
                 if(unique.includes(state.characters[k].name.toLowerCase()) || unique.includes(state.characters[k].nickname.toLowerCase())){

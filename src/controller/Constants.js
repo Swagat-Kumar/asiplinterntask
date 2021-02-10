@@ -1,5 +1,8 @@
 export const RESET_SEARCH='RESET_SEARCH';
 export const SET_EPISODES='SET_EPISODES';
 export const SET_CHARACTERS='SET_CHARACTERS';
+export const SET_PASSWORD='SET_PASSWORD';
+export const SIGN_UP='SIGN_UP';
+export const LOGIN='LOGIN';
 export const SEARCH_BY_NAME='SEARCH_BY_NAME';
 export const SEARCH_BY_EPISODE='SEARCH_BY_EPISODE';
