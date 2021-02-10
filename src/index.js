@@ -4,9 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Provider} from 'react-redux';
+import {createStore,applyMiddleware} from 'redux';
+import logger from 'redux-logger';
+import {composeWithDevTools} from 'redux-devtools-extension';
+
+import {rootReducer} from './controller/Reducer';
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)))
+
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
