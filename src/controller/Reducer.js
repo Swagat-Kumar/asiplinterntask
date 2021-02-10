@@ -1,10 +1,11 @@
-import {SEARCH_BY_NAME,SEARCH_BY_EPISODE,RESET_SEARCH,SET_EPISODES, SET_CHARACTERS,SIGN_UP,SET_PASSWORD,LOGIN} from './Constants'
+import {SEARCH_BY_NAME,SEARCH_BY_EPISODE,RESET_SEARCH,SET_EPISODES,SET_CHARACTERS,SET_PASSWORD,SIGN_UP,ADD_USER,LOGIN,LOGGED_IN} from './Constants'
 const initialAppState={
     search:'',
     appState:'login',
     characters:[],
     episodes:[],
     resultCharacters:[],
+    users:[{email:'swagatkumarrocky@gmail.com',password:'swagat'}]
 }
 export const rootReducer=(state=initialAppState,action)=>{
     switch(action.type){
@@ -14,10 +15,14 @@ export const rootReducer=(state=initialAppState,action)=>{
             return {...state,episodes:action.payload.episodes}
         case SET_PASSWORD:
             return {...state,appState:'forgot'}
+        case ADD_USER:
+            return {...state,users:action.payload,appState:'login'}
         case LOGIN:
             return {...state,appState:'login'}
         case SIGN_UP:
             return {...state,appState:'signup'}
+        case LOGGED_IN:
+            return {...state,appState:'loggedin'}
         case SET_CHARACTERS:
             return {...state,characters:action.payload.characters,resultCharacters:action.payload.characters}
         case SEARCH_BY_NAME:

@@ -4,5 +4,7 @@ export const SET_CHARACTERS='SET_CHARACTERS';
 export const SET_PASSWORD='SET_PASSWORD';
 export const SIGN_UP='SIGN_UP';
 export const LOGIN='LOGIN';
+export const ADD_USER='ADD_USER';
+export const LOGGED_IN='LOGGED_IN';
 export const SEARCH_BY_NAME='SEARCH_BY_NAME';
 export const SEARCH_BY_EPISODE='SEARCH_BY_EPISODE';

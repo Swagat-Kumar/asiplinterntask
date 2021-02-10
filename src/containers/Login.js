@@ -3,11 +3,11 @@ import {useDispatch,useSelector} from 'react-redux';
 import { 
     Form,
     Input,
-    Link,
     Button,
+    message,
    } from 'antd';
 import './Form.css';
-import {signUp,setPassword} from '../controller/Actions';
+import {signUp,setPassword,loggedIn} from '../controller/Actions';
 
   const formItemLayout = {
     labelCol: {
@@ -44,11 +44,24 @@ const Login = () => {
 
   const [form] = Form.useForm();
   const dispatch=useDispatch();
-
+  const users=useSelector(state=>state.users);
   const signUper= () =>{ dispatch(signUp());}
   const setPassworder= () =>{ dispatch(setPassword());}
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    for(var i=0;i<users.length;i++){
+      if(JSON.stringify(users[i])===JSON.stringify(values)){
+        dispatch(loggedIn());
+        return;
+      }else{
+        
+        if(users[i].email===values.email){
+          message.error('Wrong Password');
+          return;
+        }
+      }
+    }
+    message.error('No Such User Registered!');
+
   };
   return (
     <div className="container-fluid nav-bg">
@@ -56,7 +69,7 @@ const Login = () => {
         <div className="col-10 col-md-8 col-lg-6  mx-auto mt-5 pt-5">
             <div className="row mt-1 mb-4">
                 <div className="col-12"><Button className='nav-btn' type='ghost' danger onClick={signUper}>Sign Up</Button>
-            <Button type='ghost' className='nav-btn' danger onClick={setPassworder}>Set Password</Button></div>
+            <Button type='ghost' className='nav-btn' danger onClick={setPassworder}>Reset Password</Button></div>
                 </div>
             
     <Form

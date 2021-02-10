@@ -3,13 +3,13 @@ import {useDispatch,useSelector} from 'react-redux';
 import { 
     Form,
     Input,
-    Select,
     Checkbox,
     Button,
+    message
    } from 'antd';
 import './Form.css';
 
-import {login,setPassword} from '../controller/Actions';
+import {login,setPassword,addUserAndLogin} from '../controller/Actions';
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -45,11 +45,19 @@ const SignUp = () => {
 
   const [form] = Form.useForm();
   const dispatch=useDispatch();
+  const users=useSelector(state=>state.users);
   const setPassworder= () =>{ dispatch(setPassword());}
   const loginer= () =>{ dispatch(login());}
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    for(var i=0;i<users.length;i++){
+      if(users[i].email===values.email){
+        message.error('User Already Exist');
+        return;
+      }
+    }
+    const newUser={email:values.email,password:values.password};
+    dispatch(addUserAndLogin(users.concat(newUser)))
   };
   return (
     <div className="container-fluid nav-bg">
@@ -134,7 +142,7 @@ const SignUp = () => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <a href="">Agreement</a>
+          I have read the <a href="https://www.facebook.com/swagatkumarrocky">Agreement</a>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>

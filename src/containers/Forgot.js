@@ -4,10 +4,11 @@ import {
     Form,
     Input,
     Button,
+    message
    } from 'antd';
 import './Form.css';
 
-import {signUp,login} from '../controller/Actions';
+import {signUp,login,addUserAndLogin} from '../controller/Actions';
 
   const formItemLayout = {
     labelCol: {
@@ -44,10 +45,25 @@ const Forgot = () => {
 
   const [form] = Form.useForm();
   const dispatch=useDispatch();
+  const users=useSelector(state=>state.users);
   const signUper= () =>{ dispatch(signUp());}
   const loginer= () =>{ dispatch(login());}
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    var exist=false;
+    var newUsers=[];
+    for(var i=0;i<users.length;i++){
+      if(users[i].email===values.email){
+        exist=true;
+        newUsers.push({email:values.email,password:values.password});
+      }else{
+        newUsers.push(users[i]);
+      }
+    }
+    if(exist){
+      dispatch(addUserAndLogin(newUsers));
+    }else{
+      message.error('No Such User Registered!');
+    }
   };
   return (
     <div className="container-fluid nav-bg">
